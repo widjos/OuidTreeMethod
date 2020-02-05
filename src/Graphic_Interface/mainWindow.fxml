@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="758.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Graphic_Interface.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic_Interface.MainWindowController">
    <children>
       <BorderPane layoutX="250.0" layoutY="51.0" prefHeight="552.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -20,8 +19,8 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Abrir" />
-                        <MenuItem mnemonicParsing="false" text="Compilar" />
+                    <MenuItem fx:id="itemOpen" mnemonicParsing="false" text="Abrir" />
+                        <MenuItem fx:id="itemCompilar" mnemonicParsing="false" text="Compilar" />
                   </items>
                 </Menu>
               </menus>
@@ -33,7 +32,7 @@
          <left>
             <AnchorPane prefHeight="368.0" prefWidth="358.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea prefHeight="338.0" prefWidth="364.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="20.0">
+                  <TextArea fx:id="txtCodeInput" prefHeight="338.0" prefWidth="364.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="20.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -47,14 +46,14 @@
          <bottom>
             <AnchorPane prefHeight="152.0" prefWidth="758.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea prefHeight="200.0" prefWidth="758.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <TextArea fx:id="txtConsole" prefHeight="200.0" prefWidth="758.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </bottom>
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Compilar" />
+                  <Button fx:id="btnCompile" mnemonicParsing="false" text="Compilar" />
                </children>
             </VBox>
          </center>
