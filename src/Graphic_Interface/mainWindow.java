@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,13 +17,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 /**
  * FXML Controller class
  *
  * @author Wid
  */
-public class MainWindowController extends Stage {
+public class mainWindow extends Stage {
 
     /**
      * Initializes the controller class.
@@ -37,7 +39,7 @@ public class MainWindowController extends Stage {
 
         // Abrir archivo
     @FXML
-    public void openFiile(MouseEvent event){
+     public void openFile(MouseEvent event){
         cargarArchivo();
     } 
     

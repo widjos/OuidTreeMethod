@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic_Interface.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic_Interface.mainWindow">
    <children>
       <BorderPane layoutX="250.0" layoutY="51.0" prefHeight="552.0" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -19,7 +19,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="itemOpen" mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir" />
+                    <MenuItem mnemonicParsing="false" text="Abrir" />
                         <MenuItem fx:id="itemCompilar" mnemonicParsing="false" text="Compilar" />
                   </items>
                 </Menu>
