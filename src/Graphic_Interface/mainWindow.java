@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 
 /**
  * FXML Controller class
@@ -36,11 +35,14 @@ public class mainWindow extends Stage {
      @FXML private FileChooser cargaDeArchivos;
      
 
-
+    public mainWindow(){
+      
+    
+    }
 
         // Abrir archivo
     @FXML
-     public void openFile(MouseEvent event){
+     public void openFile(Event event){
         cargarArchivo();
     } 
     
@@ -56,7 +58,7 @@ public class mainWindow extends Stage {
            FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
            cargaDeArchivos.getExtensionFilters().add(extFilter);
            cargaDeArchivos.getExtensionFilters().add(extFilter2);
-        txtCodeInput.setWrapText(true);
+           txtCodeInput.setWrapText(true);
 
            try {
                File seleccionado = cargaDeArchivos.showOpenDialog(this);
