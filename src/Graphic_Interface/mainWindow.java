@@ -53,26 +53,7 @@ public class mainWindow extends Stage {
     }
      
      
-    @FXML
-    public void Compile(MouseEvent event){
-    
-        
-        scanner.tablaErrores = new LinkedList<>();
-        scanner.tablaSimbolos = new LinkedList<>();
-        
-        scanner.automataFinitoDeterministico(txtCodeInput.getText());
-        if(scanner.tablaErrores.isEmpty()){
-            
-            System.out.println("Hay errores ");
-        
-        }
-        else{
-        
-            System.out.println("Sin errores");
-        }
-        
-        
-    }
+  
     
     public void cargarArchivo(){
 
