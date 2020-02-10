@@ -35,12 +35,12 @@ public class mainWindow extends Stage {
      @FXML private  TextArea txtCodeInput, txtConsole;
      @FXML private  MenuItem itemCompilar, itemOpen;
      @FXML private FileChooser cargaDeArchivos;
-  //   private final Lexico scanner;
+
      
 
     public mainWindow(){
         
-      //  scanner = new Lexico();
+
         
     }
     
