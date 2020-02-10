@@ -23,7 +23,7 @@ public class Metodo_Arbol extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/Graphic_Interface/mainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Graphic_Interface/mainWindow.fxml"));
         primaryStage.setTitle("[LFP]Proyecto 2");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
