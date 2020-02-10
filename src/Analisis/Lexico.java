@@ -128,11 +128,11 @@ public class Lexico {
                         estado = 1;
                     }
                     // Viene un  - para formar el end de cada abrir
-                    else if(buscador == 45){
+     /*               else if(buscador == 45){
                         lexema += buscador;
                         columna++;
                         estado = 14;
-                    }
+                    }*/
                     else{
                         numeroSimbolo++;
                         tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,devolverToken(lexema),fila,columna));
@@ -303,13 +303,36 @@ public class Lexico {
                     else if(buscador == 33){
                         lexema += buscador;
                         columna++;
-                        estado = 20;                    
+                        estado = 22;                    
                     
                     }                    
                     else{
                         columna++;
                         estado = 20;                      
                     }                        
+                    break;
+                case 22:
+                    
+                    break;
+                case 21:
+                    if(buscador == 47){
+                        lexema += buscador;
+                        columna++;
+                        estado = 21;                     
+                    
+                    }else  if(buscador == 10){
+                        lexema += buscador;
+                        columna++;
+                        estado = 0;
+                        columna = 1;
+                        lexema = "";                     
+                    }
+                    else {
+                        lexema += buscador;
+                        columna++;
+                        estado = 21;   
+                    
+                    }
                     break;
                     
             } 
@@ -338,16 +361,48 @@ public class Lexico {
         }
         else if (palabra.equals("+"))
         {
-            return "TK_Suma";
+            return "TK_Mas";
         }
         else if (palabra.equals("*"))
         {
-            return "TK_Multiplicacion";
+            return "TK_Por";
         }
+        else if (palabra.equals("?"))
+        {
+            return "TK_Interrogacion";
+        }
+        else if (palabra.equals("."))
+        {
+            return "TK_Concatenacion";
+        }
+        else if (palabra.equals("|"))
+        {
+            return "TK_Disyuncion";
+        }
+        else if (palabra.equals(":"))
+        {
+            return "TK_DosPuntos";
+        }
+        else if (palabra.equals(";"))
+        {
+            return "TK_PuntoComa";
+        }
+        else if (palabra.equals(","))
+        {
+            return "TK_Coma";
+        }
+        else if (palabra.equals("~"))
+        {
+            return "TK_Virgulilla";
+        }         
         else if (palabra.equals("{"))
         {
             return "TK_Abrir";
         }
+        else if (palabra.equals("%"))
+        {
+            return "TK_Porcentaje";
+        }        
         else if (palabra.equals("->"))
         {
             return "TK_Asignar";

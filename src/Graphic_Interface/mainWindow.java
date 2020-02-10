@@ -2,10 +2,12 @@
 package Graphic_Interface;
 
 
+import Analisis.Lexico;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
+import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -33,9 +35,13 @@ public class mainWindow extends Stage {
      @FXML private  TextArea txtCodeInput, txtConsole;
      @FXML private  MenuItem itemCompilar, itemOpen;
      @FXML private FileChooser cargaDeArchivos;
+     private final Lexico scanner;
      
 
     public mainWindow(){
+        
+        scanner = new Lexico();
+        
       
     
     }
@@ -44,7 +50,29 @@ public class mainWindow extends Stage {
     @FXML
      public void openFile(Event event){
         cargarArchivo();
-    } 
+    }
+     
+     
+    @FXML
+    public void Compile(MouseEvent event){
+    
+        
+        scanner.tablaErrores = new LinkedList<>();
+        scanner.tablaSimbolos = new LinkedList<>();
+        
+        scanner.automataFinitoDeterministico(txtCodeInput.getText());
+        if(scanner.tablaErrores.isEmpty()){
+            
+            System.out.println("Hay errores ");
+        
+        }
+        else{
+        
+            System.out.println("Sin errores");
+        }
+        
+        
+    }
     
     public void cargarArchivo(){
 
