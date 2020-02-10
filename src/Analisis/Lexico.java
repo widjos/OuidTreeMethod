@@ -49,7 +49,7 @@ public class Lexico {
             }else{
                 buscador = ' ';
             }
-            
+           
             switch(estado){
              
                 case 0:
@@ -85,9 +85,9 @@ public class Lexico {
                         columna++;
                     }
                     else if(buscador >= 32 && buscador <= 126){
-                        lexema += buscador;
-                        estado = 4;
-                        columna++;                            
+                             lexema += buscador;
+                             estado = 4;
+                             columna++;
                     
                     }
                     else {
@@ -96,6 +96,7 @@ public class Lexico {
                             validarEspacios(buscador);
                         }
                         else{
+                           
                             lexema += buscador;
                             numeroErrores++;
                             tablaErrores.add(new Entorno.Error(numeroErrores, "Simbolo indefinido"+lexema, fila, columna));
@@ -127,15 +128,9 @@ public class Lexico {
                         columna++;
                         estado = 1;
                     }
-                    // Viene un  - para formar el end de cada abrir
-     /*               else if(buscador == 45){
-                        lexema += buscador;
-                        columna++;
-                        estado = 14;
-                    }*/
                     else{
                         numeroSimbolo++;
-                        tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,devolverToken(lexema),fila,columna));
+                        tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,"TK_Id",fila,columna));
                         lexema="";
                         columna++;
                         estado=0;
@@ -232,57 +227,66 @@ public class Lexico {
                     validarEspacios(buscador);
                     break;
                 case 4:
-                    // viene [ , ] , /, * ,+
-                    //Comentarios  <
-                    if(buscador == 60){
-                        lexema += buscador;
-                        columna++;
-                        estado = 19;                    
-                    
-                    }
-                    // /
-                    else if(buscador == 47){
-                        lexema += buscador;
-                        columna++;
-                        estado = 21;                     
-                    
-                    }
-                    //    S = { * , +  ,  . , : , ; , }
-                    else if((buscador == 42) || (buscador == 43) || (buscador == 46) || (buscador == 58 ) || (buscador == 59 )
-                    //    S = { , , ? , { , | , } , ~ , " }        
-                            || (buscador == 44 ) || (buscador == 63 ) || (buscador == 123 ) || (buscador == 124 ) || (buscador == 125 )
-                            || (buscador == 126 ) || (buscador == 34 )
-                            )
-                    {
+
                     numeroSimbolo++;
                     tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,devolverToken(lexema),fila,columna));    
                     lexema = "";
                     columna++;
                     estado = 0;                    
+                     validarEspacios(buscador);                    
                         
-                        
+   
+                    
+
+                    break;
+                    
+                case 6:
+                    if(buscador == 33){
+                        lexema += buscador;
+                        columna++;
+                        estado = 19;  
+                        System.out.println("lexema"+ lexema);
+                    
                     }else{
-                    numeroSimbolo++;
-                    tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,"TK_Simbolo",fila,columna));    
-                    lexema = "";
-                    columna++;
-                    estado = 0;
-
-                    validarEspacios(buscador);                    
+                        validarErrores();
+                        tablaErrores.add(new Entorno.Error(numeroErrores, "Error indefinido "+lexema, fila, columna));
+                        columna++;
+                        lexema = "";
+                        estado = 0;                       
                     
-                    
-                    }
-                    
-
+                    }                    
                     break;
                 case 19:
                     // viene !
                     if(buscador == 33){
                         lexema += buscador;
                         columna++;
-                        estado = 20;                    
+                        estado = 22;                    
+                             System.out.println("lexema"+ lexema);
                     
                     }else{
+                        columna++;
+                        estado = 19;                      
+                    }  
+
+                    break;  
+                case 22:
+                    if(buscador == 62){
+                        lexema += buscador;
+                        columna++;
+                        estado = 0;
+                             System.out.println("lexema"+ lexema);
+                    
+                        lexema = "";
+                    }
+                    else if(buscador == 33){
+                        lexema += buscador;
+                             System.out.println("lexema"+ lexema);
+                        columna++;
+                        estado = 22;                    
+                    
+                    }                      
+                    else{
                         validarErrores();
                         tablaErrores.add(new Entorno.Error(numeroErrores, "Error indefinido "+lexema, fila, columna));
                         columna++;
@@ -290,47 +294,23 @@ public class Lexico {
                         estado = 0;                    
                     
                     }
-
-                    break;  
-                case 20:
-                    if(buscador == 62){
-                        lexema += buscador;
-                        columna++;
-                        estado = 0;
-                        columna = 1;
-                        lexema = "";
-                    }
-                    else if(buscador == 33){
-                        lexema += buscador;
-                        columna++;
-                        estado = 22;                    
-                    
-                    }                    
-                    else{
-                        columna++;
-                        estado = 20;                      
-                    }                        
                     break;
-                case 22:
-                    
-                    break;
-                case 21:
+                case 5:
                     if(buscador == 47){
                         lexema += buscador;
                         columna++;
-                        estado = 21;                     
+                        estado = 5;                     
                     
                     }else  if(buscador == 10){
                         lexema += buscador;
                         columna++;
                         estado = 0;
-                        columna = 1;
                         lexema = "";                     
                     }
                     else {
                         lexema += buscador;
                         columna++;
-                        estado = 21;   
+                        estado = 5;   
                     
                     }
                     break;
@@ -410,7 +390,7 @@ public class Lexico {
         }
         else {
 
-            return "TK_Id";
+            return "TK_Simbolo";
         }
     }
 
