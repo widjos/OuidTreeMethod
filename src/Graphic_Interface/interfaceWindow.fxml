@@ -53,7 +53,7 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnCompile" mnemonicParsing="false" onMouseClicked="#Compile" text="Compilar" />
+                  <Button fx:id="btnCompile" mnemonicParsing="false" text="Compilar" />
                </children>
             </VBox>
          </center>
