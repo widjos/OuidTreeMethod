@@ -71,6 +71,10 @@ public class Lexico {
                         estado = 3;
                         columna++;
 
+                    }else if(buscador == 34){                 //Cadena
+                        estado = 7;
+                        columna++;
+                    
                     }
                     // Comentario de una linea
                     else if(buscador == 47 ){
@@ -130,7 +134,7 @@ public class Lexico {
                     }
                     else{
                         numeroSimbolo++;
-                        tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,"TK_Id",fila,columna));
+                        tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,devolverTokenReservada(lexema),fila,columna));
                         lexema="";
                         columna++;
                         estado=0;
@@ -314,6 +318,22 @@ public class Lexico {
                     
                     }
                     break;
+                case 7:
+                    if(buscador == 34){
+                    numeroSimbolo++;
+                    tablaSimbolos.add(new Simbolo(numeroSimbolo,lexema,"TK_Cadena",fila,columna));    
+                    lexema = "";
+                    columna++;
+                    estado = 0;                        
+                        
+                    }else{
+                        lexema += buscador;
+                        columna++;
+                        estado = 7;
+                    
+                    }
+                    
+                    break;
                     
             } 
             
@@ -394,7 +414,20 @@ public class Lexico {
         }
     }
 
-   
+       private String devolverTokenReservada(String palabra)
+       {
+        palabra = palabra.toLowerCase();
+        // Cambiar todo los iguales a matches()
+        if (palabra.equals("conj"))
+        {
+            return "TK_Conjunto";
+        }else{
+        
+           return "TK_Id";
+        }
+        
+       } 
+        
     private void validarErrores() {
         while (indice != cadenaEntrada.length() && cadenaEntrada.charAt(indice) != ' '
                 && cadenaEntrada.charAt(indice) != '\n' && cadenaEntrada.charAt(indice)
