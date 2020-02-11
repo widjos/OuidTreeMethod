@@ -2,10 +2,13 @@
 package Graphic_Interface;
 
 
+import Analisis.Lexico;
+import Entorno.Simbolo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
+import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -33,18 +36,57 @@ public class mainWindow extends Stage {
      @FXML private  TextArea txtCodeInput, txtConsole;
      @FXML private  MenuItem itemCompilar, itemOpen;
      @FXML private FileChooser cargaDeArchivos;
+     private Lexico scanner;
      
 
     public mainWindow(){
-      
-    
+        
+        
+
+        
     }
+    
 
         // Abrir archivo
     @FXML
      public void openFile(Event event){
         cargarArchivo();
-    } 
+    }
+     
+    @FXML 
+    public void Compile(MouseEvent event){
+    
+      scanner = new Lexico();        
+      if(!txtCodeInput.getText().isEmpty()){
+             scanner.automataFinitoDeterministico(txtCodeInput.getText());
+             if(scanner.tablaErrores.isEmpty()){
+                 System.out.println("No hay errores");
+                 printSimbolsLex(scanner.tablaSimbolos);
+             }
+          
+                
+             else
+              System.out.println("Existen erroes");
+          
+      }else{
+      
+          System.out.println("No hay nada para analizar");
+      }
+
+    }
+     
+    
+    public void printSimbolsLex(LinkedList<Simbolo> temp){
+        
+        txtConsole.clear();
+        for(Simbolo a : temp){
+        
+            txtConsole.appendText("Lexema = "+a.getLexema() + "   Token = "+ a.getToken() + "  Fila = "+a.getFilal() + "  Columna = " +a.getColumna()+"\n");
+        }
+    
+    
+    }
+  
     
     public void cargarArchivo(){
 
