@@ -338,8 +338,9 @@ public class Lexico {
             } 
             
             
-        }    
-       
+        } 
+      numeroSimbolo++;  
+      tablaSimbolos.add(new Simbolo(numeroSimbolo,"fin","TK_Final",-1,-1)); 
    }
    
    
